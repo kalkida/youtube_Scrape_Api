@@ -2,7 +2,7 @@ const mongoose = require ('mongoose')
 
 const postSchema  = mongoose.Schema({
     url:{
-        type :String
+        url :String
     },
     post :[
         {
@@ -11,9 +11,9 @@ const postSchema  = mongoose.Schema({
             numberofViews:String,
             channel :[
                 {
-                    channel_url: String,
-                    channel_name: String,
-                    channel_subscribe :String
+                    name: String,
+                    url: String,
+                    subscribers :String
                     
                 }
             ],
@@ -25,6 +25,11 @@ const postSchema  = mongoose.Schema({
             ], 
         }
     ],
+})
+
+const CommentSchema = mongoose.Schema({
+
+
 })
 
 module.exports = mongoose.model('Posts' , postSchema)

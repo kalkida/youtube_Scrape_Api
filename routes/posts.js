@@ -1,4 +1,5 @@
-const express =  require('express')
+const express =  require('express');
+const { find } = require('../models/postmodel');
 const router = express.Router()
 const Post = require('../models/postmodel')
 
@@ -41,13 +42,10 @@ router.get('/:postId' , async (req, res) =>{
     }
 })
 
-// get the url  from the data base 
-router.get('/:url' , async (req, res) =>{
+router.get('/:postId/:commentId' , async (req, res) =>{
     try{
-        const post = await Post.find()
-        if (res.json(post.url) == url){
-            res.json(post)
-        }
+        const post = await Post.findById(req.params.commentId)
+        res.json(post)
     }
     catch(err){
         res.json({message: err});
