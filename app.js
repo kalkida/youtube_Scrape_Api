@@ -7,11 +7,14 @@ require('dotenv/config');
 
 app.use(bodyParser.json());
 
-// for routhing through  the database
+// for routhing   the database
 
 const PostRoute = require('./routes/posts')
-app.use ('/youtube_Data' , PostRoute)
+app.use ('/posts' , PostRoute)
 
+app.get('/',(req,res) =>{
+    res.send("we are home")
+})
 
 
 mongoose.connect(process.env.DB_Connection ,() =>{

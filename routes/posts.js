@@ -1,9 +1,8 @@
-const express =  require('express');
-const { find } = require('../models/postmodel');
+const express =  require('express')
 const router = express.Router()
 const Post = require('../models/postmodel')
 
-// Get all the data from the data base
+// Get all the posted
 
 router.get('/' ,async(req , res) =>{
     try{
@@ -15,10 +14,9 @@ router.get('/' ,async(req , res) =>{
     }
 })
 
-// post all the Scraped data to the database
+// post all the Scraped data
 router.post ('/' ,async(req ,res) => {
     const post = new Post({
-        url : req.body.url,
         post : req.body.post, 
     });
 
@@ -31,7 +29,6 @@ router.post ('/' ,async(req ,res) => {
     }
 });
 
-// get the data with specfic id from the data base
 router.get('/:postId' , async (req, res) =>{
     try{
         const post = await Post.findById(req.params.postId)
@@ -42,17 +39,19 @@ router.get('/:postId' , async (req, res) =>{
     }
 })
 
-router.get('/:postId/:commentId' , async (req, res) =>{
+
+router.get('/:url' , async (req, res) =>{
     try{
-        const post = await Post.findById(req.params.commentId)
-        res.json(post)
+        const post = await Post.find()
+        if (res.json(post.url) == url){
+            res.json(post)
+        }
     }
     catch(err){
         res.json({message: err});
     }
 })
 
-// delete data from the data base
 router.delete('/:postId' , async (req, res) =>{
     try{
         const removedpost = await Post.remove({_id: req.params.postId});
