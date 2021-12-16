@@ -10,7 +10,7 @@ app.use(bodyParser.json());
 // for routhing   the database
 
 const PostRoute = require('./routes/posts')
-app.use ('/posts' , PostRoute)
+app.use ('/youtube_Data' , PostRoute)
 
 app.get('/',(req,res) =>{
     res.send("we are home")
@@ -21,4 +21,4 @@ mongoose.connect(process.env.DB_Connection ,() =>{
     console.log('connected to db')
 })
 
-app.listen(3000)
+app.listen(5000)
